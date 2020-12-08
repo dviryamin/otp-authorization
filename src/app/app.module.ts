@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './pages/users/users.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,6 +41,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatButtonModule,
     MatPaginatorModule,
     MatFormFieldModule,
+    MatToolbarModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
