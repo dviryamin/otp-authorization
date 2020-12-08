@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, of, throwError } from 'rxjs';
 
+const USERS: User[] = [{id: '1', name: 'orel', roles: ['none']},
+                       {id: '2', name: 'dani', roles: ['admin']},
+                       {id: '3', name: 'moki', roles: ['dev']}]
+
 @Injectable({
   providedIn: 'root'
 })
 export class MembershipService {
-  users: User[] = [];
+  users: User[] = USERS;
   constructor() { }
 
   getUsers(): Observable<User[]> {
