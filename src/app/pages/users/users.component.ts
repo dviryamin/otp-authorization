@@ -24,12 +24,15 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.initUsers();
-    
+
   }
 
   initUsers(): void {
     this.usersDataSource$ = this.memberShipService.getUsers()
       .pipe(
+        map(users => {
+          return users.map(user => ({ ...user, realmRoles$: this.memberShipService.getUserRoles(user.id) }))
+        }),
         map(users => new MatTableDataSource(users)),
         tap(dataSource => {
           dataSource.paginator = this.paginator;

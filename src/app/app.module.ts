@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -38,6 +39,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ProfileComponent
   ],
   imports: [
+    MatChipsModule,
     HttpClientModule,
     MatTableModule,
     MatButtonModule,
