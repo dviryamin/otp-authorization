@@ -6,7 +6,7 @@ import { Role } from '../models/role';
   providedIn: 'root'
 })
 export class RolesService {
-  roles: Role[] = [];
+  roles: Role[] = [{name: "admin", otpRequired:false}];
   constructor() { }
 
   getRoles(): Observable<Role[]> {

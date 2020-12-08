@@ -10,11 +10,15 @@ import { UsersComponent } from './pages/users/users.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RolesComponent } from './pages/roles/roles.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -36,7 +40,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     UsersComponent,
     UnauthorizedComponent,
     ProfileComponent,
-    RolesComponent
+    RolesComponent,
+    AddUserComponent
   ],
   imports: [
     MatTableModule,
@@ -44,6 +49,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatPaginatorModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatInputModule,
+    MatDialogModule,
+    MatCheckboxModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MembershipService } from '../../services/membership.service'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-users',
@@ -20,11 +22,17 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private memberShipService: MembershipService) { }
+  constructor(private memberShipService: MembershipService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initUsers();
     
+  }
+  openDialog():void{
+    let dialogRef = this.dialog.open(AddUserComponent, {
+      height: '400px',
+      width: '300px',
+    });
   }
 
   initUsers(): void {
