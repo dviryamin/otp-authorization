@@ -6,8 +6,8 @@ import { UsersComponent } from './pages/users/users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', data: { roles: [] }, canActivate: [AuthGuard], component: ProfileComponent },
-  { path: 'users', component: UsersComponent },
+  { path: '', data: { roles: ['owner'] }, canActivate: [AuthGuard], component: ProfileComponent },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: {roles: ['owner']}},
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 
