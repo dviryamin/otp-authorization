@@ -14,7 +14,7 @@ import { MembershipService } from '../../services/membership.service'
 })
 export class UsersComponent implements OnInit {
 
-  usersDataSource$!: Observable<MatTableDataSource<User>>;
+  usersDataSource$: Observable<MatTableDataSource<User>> = new Observable<MatTableDataSource<User>>();
   displayedColumns: string[] = ['name', 'roles'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.initUsers();
+    
   }
 
   initUsers(): void {

@@ -40,11 +40,9 @@ body{
 
 /*Resize the wrap to see the search bar change!*/
 .wrap{
-  width: 30%;
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 200%;
+  position: reative;
+  left: 190%;
 }
 
 .button-position {
@@ -61,4 +59,10 @@ body{
 
 table {
   width: 60%;
+}
+
+.filter-position {
+  position: relative;
+  top: 24%;
+  left: 24%;
 }
