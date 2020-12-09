@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.initUsers();
-    
+
   }
   openDialog():void{
     let dialogRef = this.dialog.open(AddUserComponent, {
@@ -38,6 +38,9 @@ export class UsersComponent implements OnInit {
   initUsers(): void {
     this.usersDataSource$ = this.memberShipService.getUsers()
       .pipe(
+        map(users => {
+          return users.map(user => ({ ...user, realmRoles$: this.memberShipService.getUserRoles(user.id) }))
+        }),
         map(users => new MatTableDataSource(users)),
         tap(dataSource => {
           dataSource.paginator = this.paginator;

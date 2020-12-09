@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { Role } from '../models/role';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RolesService {
-  roles: Role[] = [{name: "admin", otpRequired:false}];
-  constructor() { }
+
+  realm = 'OTP-Authorization';
+  id = 'OTP-Authorization';
+  baseUrl: string = 'https://keycloak-keycloak.apps.40.86.86.149.xip.io/auth/admin/realms';
+  constructor(private http: HttpClient) { }
 
   getRoles(): Observable<Role[]> {
-    return of(this.roles);
+    return this.http.get<Role[]>(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles`);
   }
 
   createRole(role: Role): Observable<Role> {
-    this.roles.push(role);
+    this.http.post(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles`, role)
     return of(role);
   }
 
   deleteRole(roleName: string): Observable<Role> {
-    const [roleToDelete] = this.roles.splice(this.roles.findIndex(role => role.name === roleName), 1);
-    return of(roleToDelete);
+    const roleToDelete = this.http.delete<Role>(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles/${roleName}`)
+    return roleToDelete;
   }
 
-  editRole(roleName: string, otpRequired: boolean): Observable<Role> {
-    const roleToEdit = this.roles.find(role => role.name = roleName);
-    if (!roleToEdit) {
-      return throwError(`Role doesn't exist`);
-    }
-    roleToEdit.otpRequired = otpRequired;
-    return of(roleToEdit);
+  editRole(roleName: string, role: Role): Observable<Role> {
+    const roleToEdit = this.http.put<Role>(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles/${roleName}`, role);
+    return roleToEdit;
   }
 }

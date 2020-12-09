@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { MatChipsModule } from '@angular/material/chips';
 import { RolesComponent } from './pages/roles/roles.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 
@@ -44,6 +46,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AddUserComponent
   ],
   imports: [
+    MatChipsModule,
+    HttpClientModule,
     MatTableModule,
     MatButtonModule,
     MatPaginatorModule,
