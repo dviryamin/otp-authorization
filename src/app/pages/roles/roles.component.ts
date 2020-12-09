@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RolesService } from '../../services/roles.service'
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddRoleComponent } from '../add-role/add-role.component';
 
 @Component({
   selector: 'app-roles',
@@ -19,7 +21,8 @@ export class RolesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private roleService: RolesService) { }
+  constructor(private roleService: RolesService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initRoles();
@@ -45,5 +48,11 @@ export class RolesComponent implements OnInit {
     })).subscribe();
 
 
+  }
+
+  openDialog() {
+    this.dialog.open(AddRoleComponent, {
+      
+    });
   }
 }

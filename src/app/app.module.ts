@@ -21,6 +21,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { RolesComponent } from './pages/roles/roles.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
+import { AddRoleComponent } from './pages/add-role/add-role.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -43,7 +44,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     UnauthorizedComponent,
     ProfileComponent,
     RolesComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddRoleComponent
   ],
   imports: [
     MatChipsModule,
