@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     RolesComponent
   ],
   imports: [
+    HttpClientModule,
     MatTableModule,
     MatButtonModule,
     MatPaginatorModule,
