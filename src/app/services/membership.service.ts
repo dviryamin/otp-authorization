@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-const USERS: User[] = [{id: '1', name: 'orel', roles: ['none']},
-                       {id: '2', name: 'dani', roles: ['admin']},
-                       {id: '3', name: 'moki', roles: ['dev']}]
+import { MappingsRoles, Role } from '../models/role';
+import { map, reduce, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +11,15 @@ const USERS: User[] = [{id: '1', name: 'orel', roles: ['none']},
 export class MembershipService {
   realm = 'OTP-Authorization';
   baseUrl: string = 'https://keycloak-keycloak.apps.40.86.86.149.xip.io/auth/admin/realms';
-  users: User[] = [];
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/${this.realm}/users`);
+  }
+  getUserRoles(id: string): Observable<string[]> {
+    return this.http
+      .get<{ name: string }[]>(`${this.baseUrl}/${this.realm}/users/${id}/role-mappings/realm`)
+      .pipe(map(realmRoles => realmRoles.map(role => role.name)));
   }
   addUser(user: User): Observable<User> {
     this.http.post(`${this.baseUrl}/${this.realm}/users`, user);
@@ -35,12 +37,7 @@ export class MembershipService {
     return userToEdit;
   }
   removeUserRole(userId: string, roleToRemove: string): Observable<User> {
-    this.http.delete(`${this.baseUrl}/{realm}/users/{id}/role-mappings/realm`)
-    const userToEdit = this.users.find(user => user.id === userId);
-    if (!userToEdit) {
-      return throwError(`User doesn't exist`);
-    }
-    userToEdit.roles.splice(userToEdit.roles.findIndex(role => role === roleToRemove), 1);;
-    return of(userToEdit);
+    const userToEdit = this.http.delete<User>(`${this.baseUrl}/{realm}/users/{id}/role-mappings/realm`)
+    return userToEdit;
   }
 }
