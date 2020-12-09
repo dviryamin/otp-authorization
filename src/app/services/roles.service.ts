@@ -14,7 +14,7 @@ export class RolesService {
   constructor(private http: HttpClient) { }
 
   getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles`);
+    return this.http.get<Role[]>(`${this.baseUrl}/${this.realm}/roles`);
   }
 
   createRole(role: Role): Observable<Role> {
