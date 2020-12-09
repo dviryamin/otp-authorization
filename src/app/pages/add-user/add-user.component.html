@@ -1,0 +1,12 @@
+<h1 >Add User</h1>
+<mat-form-field formControlName="userName" appearance="fill">
+    <mat-label>User Name</mat-label>
+    <input matInput>
+</mat-form-field>
+<h2 >Add Roles</h2>
+<div *ngFor="let role of roles$ | async">
+    <mat-checkbox >{{role.name}}</mat-checkbox>
+</div>
+<br>
+<br>
+<button mat-button mat-raised-button color="primary"> Add User </button>
