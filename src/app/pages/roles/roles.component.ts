@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Role } from '../../models/role'
+import { Role } from '../../models/role';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { RolesService } from '../../services/roles.service'
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { RolesService } from '../../services/roles.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddRoleComponent } from '../add-role/add-role.component';
 
 @Component({
@@ -38,7 +38,7 @@ export class RolesComponent implements OnInit {
       );
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.rolesDataSource$?.pipe(tap(dataSource => {
       dataSource.filter = filterValue.trim().toLowerCase();
@@ -50,9 +50,9 @@ export class RolesComponent implements OnInit {
 
   }
 
-  openDialog() {
+  openDialog(): void {
     this.dialog.open(AddRoleComponent, {
-      
+
     });
   }
 }

@@ -12,8 +12,8 @@ export class AddRoleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addRole(){
-    
+  addRole(): void {
+
   }
 
 }

@@ -23,7 +23,7 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { AddRoleComponent } from './pages/add-role/add-role.component';
 
-function initializeKeycloak(keycloak: KeycloakService) {
+function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
   return () =>
     keycloak.init({
       config: {

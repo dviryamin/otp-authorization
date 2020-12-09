@@ -10,7 +10,7 @@ export class RolesService {
 
   realm = 'OTP-Authorization';
   id = 'OTP-Authorization';
-  baseUrl: string = 'https://keycloak-keycloak.apps.40.86.86.149.xip.io/auth/admin/realms';
+  baseUrl = 'https://keycloak-keycloak.apps.40.86.86.149.xip.io/auth/admin/realms';
   constructor(private http: HttpClient) { }
 
   getRoles(): Observable<Role[]> {
@@ -18,12 +18,12 @@ export class RolesService {
   }
 
   createRole(role: Role): Observable<Role> {
-    this.http.post(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles`, role)
+    this.http.post(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles`, role);
     return of(role);
   }
 
   deleteRole(roleName: string): Observable<Role> {
-    const roleToDelete = this.http.delete<Role>(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles/${roleName}`)
+    const roleToDelete = this.http.delete<Role>(`${this.baseUrl}/${this.realm}/clients/${this.id}/roles/${roleName}`);
     return roleToDelete;
   }
 

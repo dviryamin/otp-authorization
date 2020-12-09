@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private keycloak: KeycloakService) { }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.userProfile = await this.keycloak.loadUserProfile();
   }
 

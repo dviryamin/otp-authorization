@@ -7,9 +7,9 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
-  { path: 'roles', component: RolesComponent },
-  { path: '', data: { roles: ['owner'] }, canActivate: [AuthGuard], component: ProfileComponent },
-  { path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: {roles: ['owner']}},
+  { path: '', component: ProfileComponent, canActivate: [AuthGuard], data: { roles: ['owner', 'developer'] }, },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: { roles: ['owner', 'developer'] } },
+  { path: 'roles', component: RolesComponent, canActivate: [AuthGuard], data: { roles: ['owner'] } },
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 

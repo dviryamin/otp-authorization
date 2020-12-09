@@ -10,7 +10,7 @@ import { map, reduce, tap } from 'rxjs/operators';
 })
 export class MembershipService {
   realm = 'OTP-Authorization';
-  baseUrl: string = 'https://keycloak-keycloak.apps.40.86.86.149.xip.io/auth/admin/realms';
+  baseUrl = 'https://keycloak-keycloak.apps.40.86.86.149.xip.io/auth/admin/realms';
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
@@ -37,7 +37,7 @@ export class MembershipService {
     return userToEdit;
   }
   removeUserRole(userId: string, roleToRemove: string): Observable<User> {
-    const userToEdit = this.http.delete<User>(`${this.baseUrl}/{realm}/users/{id}/role-mappings/realm`)
+    const userToEdit = this.http.delete<User>(`${this.baseUrl}/{realm}/users/{id}/role-mappings/realm`);
     return userToEdit;
   }
 }

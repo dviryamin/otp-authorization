@@ -1,12 +1,13 @@
-
-    <mat-toolbar color="primary">
-    <span>My App</span>
-    <span style="padding: 34px;"></span>
-    <button mat-button><a style="color: white; text-decoration: none;" routerLink="users"> Manage Users </a>
-    </button>
-    <span style="padding: 34px;"></span>
-    <button mat-button> 
-      <a style="color: white; text-decoration: none;" routerLink="roles"> Manage Roles </a>
-    </button>
-  </mat-toolbar>
+<mat-toolbar color="primary">
+  <span routerLink="/">Kicker</span>
+  <span style="padding: 34px;"></span>
+  <button mat-button *ngIf="isOwner || isDeveloper"><a style="color: white; text-decoration: none;" routerLink="users"> Manage Users </a>
+  </button>
+  <span style="padding: 34px;"></span>
+  <button mat-button *ngIf="isOwner">
+    <a style="color: white; text-decoration: none;" routerLink="roles"> Manage Roles </a>
+  </button>
+  <div class="flex-space"></div>
+  <button mat-button (click)="logout()">Log Out</button>
+</mat-toolbar>
 <router-outlet></router-outlet>

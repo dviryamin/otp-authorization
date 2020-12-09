@@ -14,6 +14,6 @@ export class AddUserComponent implements OnInit {
   constructor(private rolesService: RolesService) { }
 
   ngOnInit(): void {
-    this.roles$=this.rolesService.getRoles();
+    this.roles$ = this.rolesService.getRoles();
   }
 }
